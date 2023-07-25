@@ -66,7 +66,6 @@
       }
     ],
     "no-console": "error",
-    "no-negated-condition": "off",
     "object-curly-spacing": [
       "error",
       "always"
@@ -193,6 +192,15 @@
       "rules": {
         "no-new": "off",
         "unicorn/no-array-for-each": "off"
+      }
+    },
+    {
+      "files": [
+        "site/assets/js/**"
+      ],
+      "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2020
       }
     },
     {

@@ -11,7 +11,7 @@
 
 import docsearch from '@docsearch/js'
 
-(() => {
+function search() {
   const searchElement = document.getElementById('docsearch')
 
   if (!searchElement) {
@@ -49,4 +49,6 @@ import docsearch from '@docsearch/js'
       })
     }
   })
-})()
+}
+
+search()

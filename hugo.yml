@@ -51,6 +51,8 @@ module:
       target:           static/apple-touch-icon.png
     - source:           site/static/docs/5.3/assets/img/favicons/favicon.ico
       target:           static/favicon.ico
+    - source:           node_modules/@docsearch/css/dist/style.css
+      target:           assets/scss/vendor/@docsearch/_style.scss
 
 params:
   subtitle:             "The most popular HTML, CSS, and JS library in the world."

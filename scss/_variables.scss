@@ -1746,4 +1746,31 @@ $nested-kbd-font-weight:            null !default; // Deprecated in v5.2.0, remo
 
 $pre-color:                         null !default;
 
+
+$bd-purple:        #4c0bce;
+$bd-violet:        lighten(saturate($bd-purple, 5%), 15%); // stylelint-disable-line function-disallowed-list
+$bd-purple-light:  lighten(saturate($bd-purple, 5%), 45%); // stylelint-disable-line function-disallowed-list
+$bd-accent:        #ffe484;
+
+$gutter-x: 3rem;
+$callout-variants: info, warning, danger !default;
+
+:root,
+[data-bs-theme="light"] {
+  --bd-purple: #{$bd-purple};
+  --bd-violet: #{$bd-violet};
+  --bd-accent: #{$bd-accent};
+  --bd-violet-rgb: #{to-rgb($bd-violet)};
+  --bd-accent-rgb: #{to-rgb($bd-accent)};
+  --bd-pink-rgb: #{to-rgb($pink-500)};
+  --bd-teal-rgb: #{to-rgb($teal-500)};
+  --bd-violet-bg: var(--bd-violet);
+  --bd-toc-color: var(--bd-violet);
+  --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .1);
+  --bd-callout-link: #{to-rgb($blue-600)};
+  --bd-callout-code-color: #{$pink-600};
+  --bd-pre-bg: var(--bs-tertiary-bg);
+}
+
+
 @import "variables-dark"; // TODO: can be removed safely in v6, only here to avoid breaking changes in v5.3

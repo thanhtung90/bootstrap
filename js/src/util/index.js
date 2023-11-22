@@ -222,6 +222,25 @@ const defineJQueryPlugin = plugin => {
   })
 }
 
+const defineNoJqueryPlugin = plugin => {
+  onDOMContentLoaded(() => {
+    /* istanbul ignore if */
+    // if ($) {
+    //   const name = plugin.NAME
+    //   const JQUERY_NO_CONFLICT = $.fn[name]
+    //   $.fn[name] = plugin.jQueryInterface
+    //   $.fn[name].Constructor = plugin
+    //   $.fn[name].noConflict = () => {
+    //     $.fn[name] = JQUERY_NO_CONFLICT
+    //     return plugin.jQueryInterface
+    //   }
+    // }
+    document[plugin.NAME] = plugin.noJqueryInterface;
+    document[plugin.NAME].Constructor = plugin;
+    return plugin.noJqueryInterface;
+  })
+}
+
 const execute = (possibleCallback, args = [], defaultValue = possibleCallback) => {
   return typeof possibleCallback === 'function' ? possibleCallback(...args) : defaultValue
 }
@@ -285,6 +304,7 @@ const getNextActiveElement = (list, activeElement, shouldGetNext, isCycleAllowed
 
 export {
   defineJQueryPlugin,
+  defineNoJqueryPlugin,
   execute,
   executeAfterTransition,
   findShadowRoot,

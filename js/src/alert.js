@@ -70,6 +70,22 @@ class Alert extends BaseComponent {
       data[config](this)
     })
   }
+
+  static noJqueryInterface(config) {
+    document.querySelectorAll(this).forEach(function () {
+      const data = Alert.getOrCreateInstance(this)
+
+      if (typeof config !== 'string') {
+        return
+      }
+
+      if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        throw new TypeError(`No method named "${config}"`)
+      }
+
+      data[config](this)
+    })
+  }
 }
 
 /**
@@ -82,6 +98,7 @@ enableDismissTrigger(Alert, 'close')
  * jQuery
  */
 
-defineJQueryPlugin(Alert)
+// defineJQueryPlugin(Alert)
+noJqueryInterface(Alert);
 
 export default Alert

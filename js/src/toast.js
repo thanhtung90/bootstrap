@@ -8,7 +8,7 @@
 import BaseComponent from './base-component.js'
 import EventHandler from './dom/event-handler.js'
 import { enableDismissTrigger } from './util/component-functions.js'
-import { defineJQueryPlugin, reflow } from './util/index.js'
+import { defineNoJqueryPlugin, reflow } from './util/index.js'
 
 /**
  * Constants
@@ -195,8 +195,21 @@ class Toast extends BaseComponent {
   }
 
   // Static
-  static jQueryInterface(config) {
-    return this.each(function () {
+  // static jQueryInterface(config) {
+  //   return this.each(function () {
+  //     const data = Toast.getOrCreateInstance(this, config)
+
+  //     if (typeof config === 'string') {
+  //       if (typeof data[config] === 'undefined') {
+  //         throw new TypeError(`No method named "${config}"`)
+  //       }
+
+  //       data[config](this)
+  //     }
+  //   })
+  // }
+  static noJqueryInterface(config) {
+    return document.querySelectorAll(this).forEach(function () {
       const data = Toast.getOrCreateInstance(this, config)
 
       if (typeof config === 'string') {
@@ -220,6 +233,7 @@ enableDismissTrigger(Toast)
  * jQuery
  */
 
-defineJQueryPlugin(Toast)
+// defineJQueryPlugin(Toast)
+defineNoJqueryPlugin(Toast)
 
 export default Toast

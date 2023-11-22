@@ -9,7 +9,7 @@ import BaseComponent from './base-component.js'
 import EventHandler from './dom/event-handler.js'
 import SelectorEngine from './dom/selector-engine.js'
 import {
-  defineJQueryPlugin,
+  defineNoJqueryPlugin,
   getElement,
   reflow
 } from './util/index.js'
@@ -253,7 +253,25 @@ class Collapse extends BaseComponent {
   }
 
   // Static
-  static jQueryInterface(config) {
+  // static jQueryInterface(config) {
+  //   const _config = {}
+  //   if (typeof config === 'string' && /show|hide/.test(config)) {
+  //     _config.toggle = false
+  //   }
+
+  //   return this.each(function () {
+  //     const data = Collapse.getOrCreateInstance(this, _config)
+
+  //     if (typeof config === 'string') {
+  //       if (typeof data[config] === 'undefined') {
+  //         throw new TypeError(`No method named "${config}"`)
+  //       }
+
+  //       data[config]()
+  //     }
+  //   })
+  // }
+  static noJqueryInterface(config) {
     const _config = {}
     if (typeof config === 'string' && /show|hide/.test(config)) {
       _config.toggle = false
@@ -292,6 +310,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (
  * jQuery
  */
 
-defineJQueryPlugin(Collapse)
+// defineJQueryPlugin(Collapse)
+defineNoJqueryPlugin(Collapse)
 
 export default Collapse

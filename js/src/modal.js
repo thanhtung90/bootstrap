@@ -11,7 +11,7 @@ import SelectorEngine from './dom/selector-engine.js'
 import Backdrop from './util/backdrop.js'
 import { enableDismissTrigger } from './util/component-functions.js'
 import FocusTrap from './util/focustrap.js'
-import { defineJQueryPlugin, isRTL, isVisible, reflow } from './util/index.js'
+import { defineNoJqueryPlugin, isRTL, isVisible, reflow } from './util/index.js'
 import ScrollBarHelper from './util/scrollbar.js'
 
 /**
@@ -313,8 +313,24 @@ class Modal extends BaseComponent {
   }
 
   // Static
-  static jQueryInterface(config, relatedTarget) {
-    return this.each(function () {
+  // static jQueryInterface(config, relatedTarget) {
+  //   return this.each(function () {
+  //     const data = Modal.getOrCreateInstance(this, config)
+
+  //     if (typeof config !== 'string') {
+  //       return
+  //     }
+
+  //     if (typeof data[config] === 'undefined') {
+  //       throw new TypeError(`No method named "${config}"`)
+  //     }
+
+  //     data[config](relatedTarget)
+  //   })
+  // }
+
+  static noJqueryInterface(config, relatedTarget) {
+    return document.querySelectorAll(this).forEach(function () {
       const data = Modal.getOrCreateInstance(this, config)
 
       if (typeof config !== 'string') {
@@ -371,6 +387,7 @@ enableDismissTrigger(Modal)
  * jQuery
  */
 
-defineJQueryPlugin(Modal)
+// defineJQueryPlugin(Modal)
+defineNoJqueryPlugin(Modal)
 
 export default Modal

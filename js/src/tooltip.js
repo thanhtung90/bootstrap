@@ -9,7 +9,7 @@ import * as Popper from '@popperjs/core'
 import BaseComponent from './base-component.js'
 import EventHandler from './dom/event-handler.js'
 import Manipulator from './dom/manipulator.js'
-import { defineJQueryPlugin, execute, findShadowRoot, getElement, getUID, isRTL, noop } from './util/index.js'
+import { defineNoJqueryPlugin, execute, findShadowRoot, getElement, getUID, isRTL, noop } from './util/index.js'
 import { DefaultAllowlist } from './util/sanitizer.js'
 import TemplateFactory from './util/template-factory.js'
 
@@ -605,8 +605,23 @@ class Tooltip extends BaseComponent {
   }
 
   // Static
-  static jQueryInterface(config) {
-    return this.each(function () {
+  // static jQueryInterface(config) {
+  //   return this.each(function () {
+  //     const data = Tooltip.getOrCreateInstance(this, config)
+
+  //     if (typeof config !== 'string') {
+  //       return
+  //     }
+
+  //     if (typeof data[config] === 'undefined') {
+  //       throw new TypeError(`No method named "${config}"`)
+  //     }
+
+  //     data[config]()
+  //   })
+  // }
+  static noJqueryInterface(config) {
+    return document.querySelectorAll(this).forEach(function () {
       const data = Tooltip.getOrCreateInstance(this, config)
 
       if (typeof config !== 'string') {
@@ -626,6 +641,7 @@ class Tooltip extends BaseComponent {
  * jQuery
  */
 
-defineJQueryPlugin(Tooltip)
+// defineJQueryPlugin(Tooltip)
+defineNoJqueryPlugin(Tooltip)
 
 export default Tooltip

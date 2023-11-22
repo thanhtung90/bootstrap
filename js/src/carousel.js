@@ -10,7 +10,7 @@ import EventHandler from './dom/event-handler.js'
 import Manipulator from './dom/manipulator.js'
 import SelectorEngine from './dom/selector-engine.js'
 import {
-  defineJQueryPlugin,
+  defineNoJqueryPlugin,
   getNextActiveElement,
   isRTL,
   isVisible,
@@ -405,8 +405,26 @@ class Carousel extends BaseComponent {
   }
 
   // Static
-  static jQueryInterface(config) {
-    return this.each(function () {
+  // static jQueryInterface(config) {
+  //   return this.each(function () {
+  //     const data = Carousel.getOrCreateInstance(this, config)
+
+  //     if (typeof config === 'number') {
+  //       data.to(config)
+  //       return
+  //     }
+
+  //     if (typeof config === 'string') {
+  //       if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+  //         throw new TypeError(`No method named "${config}"`)
+  //       }
+
+  //       data[config]()
+  //     }
+  //   })
+  // }
+  static noJqueryInterface(config) {
+    return document.querySelectorAll(this).forEach(function () {
       const data = Carousel.getOrCreateInstance(this, config)
 
       if (typeof config === 'number') {
@@ -469,6 +487,7 @@ EventHandler.on(window, EVENT_LOAD_DATA_API, () => {
  * jQuery
  */
 
-defineJQueryPlugin(Carousel)
+// defineJQueryPlugin(Carousel)
+defineNoJqueryPlugin(Carousel)
 
 export default Carousel

@@ -10,8 +10,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const BUNDLE = process.env.BUNDLE === 'true'
 const ESM = process.env.ESM === 'true'
+const NAME = process.env.NAME ? process.env.NAME : "";
 
-let destinationFile = `bootstrap${ESM ? '.esm' : ''}`
+let destinationFile = `bootstrap${(NAME ? "-" + NAME : "")}${ESM ? '.esm' : ''}`
 const external = ['@popperjs/core']
 const plugins = [
   babel({
@@ -40,7 +41,7 @@ if (BUNDLE) {
 }
 
 const rollupConfig = {
-  input: path.resolve(__dirname, `../js/index.${ESM ? 'esm' : 'umd'}.js`),
+  input: path.resolve(__dirname, `../js/${NAME ? NAME : "index"}.${ESM ? 'esm' : 'umd'}.js`),
   output: {
     banner: banner(),
     file: path.resolve(__dirname, `../dist/js/${destinationFile}.js`),

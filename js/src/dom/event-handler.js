@@ -5,7 +5,7 @@
  * --------------------------------------------------------------------------
  */
 
-import { getjQuery } from '../util/index.js'
+// import { getjQuery } from '../util/index.js'
 
 /**
  * Constants
@@ -261,23 +261,23 @@ const EventHandler = {
       return null
     }
 
-    const $ = getjQuery()
-    const typeEvent = getTypeEvent(event)
-    const inNamespace = event !== typeEvent
+    // const $ = getjQuery()
+    // const typeEvent = getTypeEvent(event)
+    // const inNamespace = event !== typeEvent
 
-    let jQueryEvent = null
+    // let jQueryEvent = null
     let bubbles = true
     let nativeDispatch = true
     let defaultPrevented = false
 
-    if (inNamespace && $) {
-      jQueryEvent = $.Event(event, args)
+    // if (inNamespace && $) {
+    //   jQueryEvent = $.Event(event, args)
 
-      $(element).trigger(jQueryEvent)
-      bubbles = !jQueryEvent.isPropagationStopped()
-      nativeDispatch = !jQueryEvent.isImmediatePropagationStopped()
-      defaultPrevented = jQueryEvent.isDefaultPrevented()
-    }
+    //   $(element).trigger(jQueryEvent)
+    //   bubbles = !jQueryEvent.isPropagationStopped()
+    //   nativeDispatch = !jQueryEvent.isImmediatePropagationStopped()
+    //   defaultPrevented = jQueryEvent.isDefaultPrevented()
+    // }
 
     const evt = hydrateObj(new Event(event, { bubbles, cancelable: true }), args)
 
@@ -289,9 +289,9 @@ const EventHandler = {
       element.dispatchEvent(evt)
     }
 
-    if (evt.defaultPrevented && jQueryEvent) {
-      jQueryEvent.preventDefault()
-    }
+    // if (evt.defaultPrevented && jQueryEvent) {
+    //   jQueryEvent.preventDefault()
+    // }
 
     return evt
   }

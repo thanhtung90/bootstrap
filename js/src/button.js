@@ -7,7 +7,7 @@
 
 import BaseComponent from './base-component.js'
 import EventHandler from './dom/event-handler.js'
-import { defineJQueryPlugin } from './util/index.js'
+import { defineNoJqueryPlugin } from './util/index.js'
 
 /**
  * Constants
@@ -67,6 +67,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, event => {
  * jQuery
  */
 
-defineJQueryPlugin(Button)
+// defineJQueryPlugin(Button)
+defineNoJqueryPlugin(Button)
 
 export default Button

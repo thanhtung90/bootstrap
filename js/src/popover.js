@@ -6,7 +6,7 @@
  */
 
 import Tooltip from './tooltip.js'
-import { defineJQueryPlugin } from './util/index.js'
+import { defineNoJqueryPlugin } from './util/index.js'
 
 /**
  * Constants
@@ -71,8 +71,23 @@ class Popover extends Tooltip {
   }
 
   // Static
-  static jQueryInterface(config) {
-    return this.each(function () {
+  // static jQueryInterface(config) {
+  //   return this.each(function () {
+  //     const data = Popover.getOrCreateInstance(this, config)
+
+  //     if (typeof config !== 'string') {
+  //       return
+  //     }
+
+  //     if (typeof data[config] === 'undefined') {
+  //       throw new TypeError(`No method named "${config}"`)
+  //     }
+
+  //     data[config]()
+  //   })
+  // }
+  static noJqueryInterface(config) {
+    return document.querySelectorAll(this).forEach(function () {
       const data = Popover.getOrCreateInstance(this, config)
 
       if (typeof config !== 'string') {
@@ -92,6 +107,7 @@ class Popover extends Tooltip {
  * jQuery
  */
 
-defineJQueryPlugin(Popover)
+// defineJQueryPlugin(Popover)
+defineNoJqueryPlugin(Popover)
 
 export default Popover

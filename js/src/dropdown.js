@@ -11,7 +11,7 @@ import EventHandler from './dom/event-handler.js'
 import Manipulator from './dom/manipulator.js'
 import SelectorEngine from './dom/selector-engine.js'
 import {
-  defineJQueryPlugin,
+  defineNoJqueryPlugin,
   execute,
   getElement,
   getNextActiveElement,
@@ -337,8 +337,23 @@ class Dropdown extends BaseComponent {
   }
 
   // Static
-  static jQueryInterface(config) {
-    return this.each(function () {
+  // static jQueryInterface(config) {
+  //   return this.each(function () {
+  //     const data = Dropdown.getOrCreateInstance(this, config)
+
+  //     if (typeof config !== 'string') {
+  //       return
+  //     }
+
+  //     if (typeof data[config] === 'undefined') {
+  //       throw new TypeError(`No method named "${config}"`)
+  //     }
+
+  //     data[config]()
+  //   })
+  // }
+  static noJqueryInterface(config) {
+    return document.querySelectorAll(this).forEach(function () {
       const data = Dropdown.getOrCreateInstance(this, config)
 
       if (typeof config !== 'string') {
@@ -450,6 +465,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (
  * jQuery
  */
 
-defineJQueryPlugin(Dropdown)
+// defineJQueryPlugin(Dropdown)
+defineNoJqueryPlugin(Dropdown)
 
 export default Dropdown

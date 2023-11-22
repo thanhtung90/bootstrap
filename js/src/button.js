@@ -48,6 +48,15 @@ class Button extends BaseComponent {
       }
     })
   }
+  static noJqueryInterface(config) {
+    return document.querySelectorAll(this).forEach(function () {
+      const data = Button.getOrCreateInstance(this)
+
+      if (config === 'toggle') {
+        data[config]()
+      }
+    })
+  }
 }
 
 /**

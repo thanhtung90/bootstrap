@@ -277,7 +277,7 @@ class Collapse extends BaseComponent {
       _config.toggle = false
     }
 
-    return this.each(function () {
+    return document.querySelectorAll(this).forEach(function () {
       const data = Collapse.getOrCreateInstance(this, _config)
 
       if (typeof config === 'string') {

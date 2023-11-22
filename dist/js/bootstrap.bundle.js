@@ -880,6 +880,18 @@
         data[config](this);
       });
     }
+    static noJqueryInterface(config) {
+      document.querySelectorAll(this).forEach(function () {
+        const data = Alert.getOrCreateInstance(this);
+        if (typeof config !== 'string') {
+          return;
+        }
+        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+        data[config](this);
+      });
+    }
   }
 
   /**
@@ -892,7 +904,8 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Alert);
+  // defineJQueryPlugin(Alert)
+  noJqueryInterface(Alert);
 
   /**
    * --------------------------------------------------------------------------
@@ -4768,7 +4781,10 @@
     br: [],
     col: [],
     code: [],
+    dd: [],
     div: [],
+    dl: [],
+    dt: [],
     em: [],
     hr: [],
     h1: [],

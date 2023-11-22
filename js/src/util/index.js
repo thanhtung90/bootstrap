@@ -236,7 +236,7 @@ const defineNoJqueryPlugin = plugin => {
     //   }
     // }
     document[plugin.NAME] = plugin.noJqueryInterface;
-    document[plugin.NAME].Constructor = plugin;
+    document[plugin.NAME].Constructor = plugin; 
     return plugin.noJqueryInterface;
   })
 }
